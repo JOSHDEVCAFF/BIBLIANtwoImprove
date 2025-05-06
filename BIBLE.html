@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="biblegpt-removebg-preview.png" type="image/x-icon" >
+    <title>Bible - Biblian</title>
+    <link rel="stylesheet" href="Aistyle.css">
+</head>
+<body>
+    <header style="position: fixed; top: 10px; left: 10px; z-index: 1000;">
+        <button id="infoButton" style="background: none; border: none; cursor: pointer; font-size: 14px; font-weight: bold; color: #c2c2c2b4; display: flex; align-items: center; gap: 5px;">
+            BIBLIAN
+           <image src="biblegpt.png" alt="bot" style="border-radius: 50%; width: 20px; height: 20px; color: #000000b4; margin: 0">
+        </button>
+        <div id="infoTooltip" style="display: none; position: absolute; top: 25px; left: 0; background-image: url(crossjesus.jpg); border: 1px solid #ccc; padding: 10px; border-radius: 5px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); font-size: 12px; width: 150px;">
+            <span style="float: right; cursor: pointer; color: #acacac;" id="closeTooltip">&times;</span>
+            <p style="color: rgba(255, 255, 255, 0.897);">This BIBLIAN is created by Josh, a 17-year-old guy.</p>
+            <br><br>
+            <div class="info" >
+                <a href="#" id="whatIsChatPGT" style="color: #d8d8d8; text-decoration: none; cursor: pointer;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">What is BIBLIAN?</a><br>
+                <a href="#" id="whoIsJosh" style="color: #c5c5c5; text-decoration: none; cursor: pointer;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Who is Josh?</a><br>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div id="chat-container">
+            <!-- Chat messages will be dynamically added here -->
+        </div>
+        <hr style="border: 1px solid #00000085; margin: 20px 0; margin: 0;">
+        <div style="display: flex; justify-content: center; gap: 10px;">
+            <a href="https://www.facebook.com/JoshCaffdial" target="_blank"><img src="facebook.png" width="20px" height="20px"></a>
+            <a href="https://www.instagram.com/joshcaffeinated" target="_blank"><img src="social.png" width="20px" height="20px"></a>
+            <a href="https://www.github.com/JOSHDEVCAFF" target="_blank"><img src="github.png" width="20px" height="20px"></a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=joshscz123@gmail.com&su=Inquiry" target="_blank"><img src="gmail.png" width="20px" height="20px"></a>
+        </div>
+            <form id="questionForm">
+                <input type="text" id="question" placeholder="Type (Chapter: verse) or (Chapter: verse-to verse)" required>
+                <button type="submit"><img src="paper-plane.png" width="15px" height="15px"></button>
+        </div>
+    </main>
+    <div id="whatIsPanel" style="display:none; position: fixed; top: 100px; left: 10px; background-image: url(crossjesus.jpg); border: 1px solid #ccc; padding: 20px; border-radius: 10px; width: 300px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 1001;">
+    <span style="float:right; cursor:pointer; color: black;" onclick="document.getElementById('whatIsPanel').style.display='none'">&times;</span>
+    <h4 style="margin-top:0; color: rgb(255, 255, 255);">What is BIBLIAN?</h4>
+    <p style="font-size: 14px; color: rgba(255, 255, 255, 0.76);">
+        BIBLIAN is a chatbot designed to assist users in finding specific verses or chapters in the Bible. You can ask for a verse by its reference (e.g., "Genesis 1:1"), a full chapter (e.g., "Psalm 23"), or a range of verses (e.g., "John 3:16-18"). The chatbot will provide the requested information and help you explore the Bible more easily.</p>
+    <p style="font-size: 14px; color: rgba(233, 233, 233, 0.671);">To use BIBLIAN, simply type your question in the input box and hit enter. The chatbot will respond with the relevant information.</p>
+    </p>
+</div>
+<div id="whatIsJosh" style="display:none; position: fixed; top: 110px; left: 10px; background-image: url(crossjesus.jpg); border: 1px solid #ccc; padding: 20px; border-radius: 10px; width: 300px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 1001;">
+    <span style="float:right; cursor:pointer; color: black;" onclick="document.getElementById('whatIsJosh').style.display='none'">&times;</span>
+    <h4 style="margin-top:0; color: rgb(255, 255, 255);">Who is Josh?</h4>
+    <p style="font-size: 14px; color: rgba(255, 255, 255, 0.767);">Hi, I'm Josh, a 17-year-old who enjoys coding in my free time. One of my favorite projects I've created is Biblian—a unique chatbot that only responds with Bible verses. It works kind of like an AI, but it's strictly limited to scripture. For example, if you ask it "Genesis 1:1," it'll reply with the exact verse, and it wont answer anything outside of the Bible. I designed Biblian to be a focused, faith-based tool for quick and easy access to scripture in a conversational format. </p>
+</div>
+
+    <script src="bible.js"></script>
+    <script>
+         document.getElementById('whatIsChatPGT').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('whatIsPanel').style.display = 'block';
+        });
+        document.getElementById('whoIsJosh').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('whatIsJosh').style.display = 'block';
+        });
+
+        document.getElementById('infoButton').addEventListener('click', function() {
+            const tooltip = document.getElementById('infoTooltip');
+            tooltip.style.display = tooltip.style.display === 'none' ? 'block' : 'none';
+        });
+
+        document.getElementById('closeTooltip').addEventListener('click', function() {
+            document.getElementById('infoTooltip').style.display = 'none';
+        });
+
+        document.getElementById('questionForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const question = document.getElementById('question').value.trim();
+            if (question) {
+                handleQuestion(question);
+                document.getElementById('question').value = ''; // Clear input
+            }
+        });
+
+        function addMessage(sender, text) {
+            const chatContainer = document.getElementById('chat-container');
+            const messageElement = document.createElement('div');
+            messageElement.className = `chat-message ${sender}`;
+            messageElement.innerHTML = `
+              <p style="font-family: 'Georgia', 'Times New Roman', serif; color: black; text-shadow: 0px 2px 5px #fbfbff0c; font-size: 13px; line-height: 1.9; 
+              letter-spacing: 1px; word-spacing: 3px">${text}</p>
+            `;
+            chatContainer.appendChild(messageElement);
+            chatContainer.scrollTop = chatContainer.scrollHeight; // Scroll to latest message
+            return messageElement.querySelector('p'); // Return the paragraph element for updates
+        }
+
+        function showLoading() {
+            const chatContainer = document.getElementById('chat-container');
+            const loadingElement = document.createElement('div');
+            loadingElement.id = 'loading';
+            loadingElement.className = 'chat-message bot';
+            loadingElement.innerHTML = `
+                <img src="biblegpt.png" alt="bot" style="border-radius: 50%; width: 25px; height: 25px; color: #000000b4; margin: 0">
+                <p><span>.</span><span>.</span><span>.</span></p>
+            `;
+            chatContainer.appendChild(loadingElement);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function hideLoading() {
+            const loadingElement = document.getElementById('loading');
+            if (loadingElement) {
+                loadingElement.remove();
+            }
+        }
+
+// Utility to title-case book names, e.g. "psalm" => "Psalm", "1 samuel" => "1 Samuel"
+function titleCase(str) {
+    return str
+        .toLowerCase()
+        .split(" ")
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+}
+
+// Function to extract book name, chapter, and verse from input like "Genesis 1:1"
+function extractChapterVerse(input) {
+    const regex = /([1-3]?\s?[a-zA-Z]+)\s*(\d+):(\d+)/i;
+    const match = input.match(regex);
+
+    if (match) {
+        const book = titleCase(match[1].trim());
+        const chapter = match[2];
+        const verse = match[3];
+        return { book, chapter, verse };
+    }
+    return null;
+}
+
+// Function to extract book name and chapter only, like "Psalm 1"
+function extractFullChapter(input) {
+    const regex = /([1-3]?\s?[a-zA-Z]+)\s+(\d+)/i;
+    const match = input.match(regex);
+
+    if (match) {
+        const book = titleCase(match[1].trim());
+        const chapter = match[2];
+        return { book, chapter };
+    }
+    return null;
+}
+
+// Function to extract book name, chapter, and a range of verses like "Genesis 1:12-15"
+function extractChapterVerseRange(input) {
+    const regex = /([1-3]?\s?[a-zA-Z]+)\s*(\d+):(\d+)-(\d+)/i;
+    const match = input.match(regex);
+
+    if (match) {
+        const book = titleCase(match[1].trim());
+        const chapter = match[2];
+        const startVerse = match[3];
+        const endVerse = match[4];
+        return { book, chapter, startVerse, endVerse };
+    }
+    return null;
+}
+
+// Main function to get response for a single verse, full chapter, or range of verses
+function getKeywordResponse(question) {
+    const lowerQuestion = question.toLowerCase();
+
+    // Check for a range of verses like "Genesis 1:12-15"
+    const chapterVerseRange = extractChapterVerseRange(question);
+    if (chapterVerseRange) {
+        const { book, chapter, startVerse, endVerse } = chapterVerseRange;
+        const chapterKey = `${book} chapter ${chapter}`;
+        const chapterData = keywordResponses.find(entry => entry.keys.includes(chapterKey));
+
+        if (chapterData) {
+            let versesText = `${book} ${chapter}:\n\n`;
+            const verses = chapterData.response;
+
+            const start = parseInt(startVerse);
+            const end = Math.min(parseInt(endVerse), Object.keys(verses).length); // Clamp to max verse
+
+            for (let i = start; i <= end; i++) {
+                versesText += `${i}  ${verses[i]}\n`;
+            }
+
+            return versesText;
+        } else {
+            return `Sorry, ${book} ${chapter} is not available for now.`;
+        }
+    }
+
+    // Check for a single verse like "Genesis 1:1"
+    const chapterVerse = extractChapterVerse(question);
+    if (chapterVerse) {
+        const { book, chapter, verse } = chapterVerse;
+        const chapterKey = `${book} chapter ${chapter}`;
+        const chapterData = keywordResponses.find(entry => entry.keys.includes(chapterKey));
+
+        if (chapterData && chapterData.response[verse]) {
+            return `${book} ${chapter}:${verse} - ${chapterData.response[verse]}`;
+        } else {
+            return `Sorry, ${book} ${chapter}:${verse} is not available for now.`;
+        }
+    }
+
+    // Check for full chapter request like "Genesis 1"
+    const fullChapter = extractFullChapter(question);
+    if (fullChapter) {
+        const { book, chapter } = fullChapter;
+        const chapterKey = `${book} chapter ${chapter}`;
+        const chapterData = keywordResponses.find(entry => entry.keys.includes(chapterKey));
+
+        if (chapterData) {
+            let fullChapterText = `${book} ${chapter}:\n\n`;
+            const verses = chapterData.response;
+            for (let i = 1; i <= Object.keys(verses).length; i++) {
+                fullChapterText += `${i}  ${verses[i]}\n`;
+            }
+            return fullChapterText;
+        } else {
+            return `Sorry, ${book} chapter ${chapter} is not available for now.`;
+        }
+    }
+    
+    const fallbackMessages = [
+    "No matching verse found. Please use a known word, book, or format like 'Genesis 1:1'.",
+    "Sorry I couldn't find,but we promise we will continue enhancing the BIBLIAN bot to make it even better and easier.",
+    "I couldn't find that verse. Please check the spelling or try a different one.",
+    "Sorry, I couldn't find that verse. Please try another one.",
+    "Please enter a valid word or reference so I can find the correct verse, chapter, or passage.",
+    "Make sure to use a meaningful word or proper reference like 'Genesis 1:1' so I can find the right verse."
+    ];
+    return fallbackMessages[Math.floor(Math.random() * fallbackMessages.length)];
+}
+
+// Update the handleQuestion function to call the new getKeywordResponse logic
+function handleQuestion(question) {
+    addMessage('user', question); // Add user message
+    showLoading(); // Show "thinking" animation
+
+    setTimeout(() => {
+        const responseText = getKeywordResponse(question); // Get response based on keywords
+        hideLoading(); // Hide loading animation
+
+        const botMessageElement = addMessage('bot', ''); // Add bot message
+        displayResponseWordByWord(responseText, botMessageElement); // Display response word by word
+    }, 3500); // Simulate a delay for loading
+}
+
+// Word-by-word display effect with adjustable speed
+function displayResponseWordByWord(text, container, speed = 40) {
+    const words = text.split(' ');
+    let index = 0;
+    container.textContent = ''; // Clear the container
+
+    const interval = setInterval(() => {
+        if (index < words.length) {
+            container.textContent += words[index] + ' ';
+            index++;
+        } else {
+            clearInterval(interval); // Stop the interval after all words are shown
+        }
+    }, speed); // Adjust the delay based on the speed parameter
+}
+
+    </script>
+</body>
+</html>
